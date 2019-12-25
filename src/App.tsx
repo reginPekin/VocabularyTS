@@ -1,6 +1,7 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useState } from "react";
 
-import { Button } from "./components/Button";
+import { InputButton } from "./components/InputButton";
+import { Popup } from "./components/Popup";
 
 interface Props {
   name?: string;
@@ -8,16 +9,24 @@ interface Props {
 }
 
 const App: FunctionComponent<Props> = ({ name = "Ja-ja", sername }) => {
+  const [isVisible, setIsVisible] = useState(true);
   return (
     <div className="App">
       <p>
         Hi, {name} {sername}
-        <Button onClick={() => alert("Hi")}>
-          <section>
-            <span> Add folder </span>
-          </section>
-        </Button>
+        <InputButton
+          changeVisibility={value => setIsVisible(value)}
+          isVisible={isVisible}
+          onChange={value => console.log(value)}
+          text="Hi"
+        />
       </p>
+      <Popup
+        isVisible={isVisible}
+        changeVisibility={() => setIsVisible(!isVisible)}
+      >
+        Hello
+      </Popup>
     </div>
   );
 };
