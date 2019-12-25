@@ -10,8 +10,8 @@ import styles from "./InputButton.module.css";
 import { Button } from "../Button";
 
 interface Props {
-  visibility: boolean;
-  changeVisibility: (event: any) => any;
+  isVisible: boolean;
+  changeVisibility: (value: boolean) => any;
   onChange: (event: any) => any;
   text: string;
   inputClassName?: string;
@@ -20,7 +20,7 @@ interface Props {
 }
 
 export const InputButton: FunctionComponent<Props> = ({
-  visibility,
+  isVisible,
   changeVisibility,
   onChange,
   text,
@@ -28,14 +28,14 @@ export const InputButton: FunctionComponent<Props> = ({
   buttonClassName = undefined,
   formClassName = undefined
 }) => {
-  if (!visibility) {
+  if (!isVisible) {
     return (
       <EditingInput
         formClassName={formClassName}
         inputClassName={inputClassName}
         value={text}
         changeVisibility={() => changeVisibility(true)}
-        onSubmit={(value?: string) => {
+        onSubmit={value => {
           onChange(value);
         }}
       />
@@ -54,7 +54,7 @@ export const InputButton: FunctionComponent<Props> = ({
 interface InputProps {
   value?: string;
   changeVisibility?: () => any;
-  onSubmit?: (value?: string) => any;
+  onSubmit?: (event?: string | undefined) => any;
   inputClassName?: string;
   formClassName?: string;
 }
@@ -66,7 +66,7 @@ const EditingInput: FunctionComponent<InputProps> = ({
   inputClassName = undefined,
   formClassName = undefined
 }) => {
-  const inputRef = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLInputElement | null>(null);
   useSelect(inputRef);
   useOnClickOutside(inputRef, () => changeVisibility());
 
@@ -74,9 +74,11 @@ const EditingInput: FunctionComponent<InputProps> = ({
     <form
       className={formClassName}
       onSubmit={event => {
-        onSubmit(inputRef.current.value);
+        if (inputRef && inputRef.current) {
+          onSubmit(inputRef.current.value);
+          inputRef.current.value = "";
+        }
         changeVisibility();
-        inputRef.current.value = "";
         event.preventDefault();
       }}
     >
