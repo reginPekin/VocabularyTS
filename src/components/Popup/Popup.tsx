@@ -18,7 +18,7 @@ export const Popup: FunctionComponent<Props> = ({
   changeVisibility = () => null,
   positionClassName = undefined
 }) => {
-  const divRef = useRef(null);
+  const divRef = useRef<HTMLDivElement | null>(null);
   useOnClickOutside(divRef, () => changeVisibility());
   return (
     <div>
