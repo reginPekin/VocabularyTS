@@ -1,0 +1,42 @@
+.section {
+  display: flex;
+  line-height: 120%;
+  align-items: center;
+  font-size: 16px;
+}
+
+.form {
+  border-bottom: 1px solid var(--light-grey);
+  padding: 1em 2em;
+}
+
+.newFolderInput {
+  font-size: 1em;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid black;
+  background-color: var(--light-grey);
+}
+
+.newFolderButton {
+  /* position: fixed; */
+
+  width: 200px;
+  background-color: gold;
+  text-align: left;
+  font-size: 1em;
+  padding: 1em 2em;
+}
+
+.newFolderButton:hover {
+  background-color: white;
+}
+
+.newFolderButton img {
+  padding-right: 4px;
+}
+
+.popup {
+  bottom: 40px;
+  left: 150px;
+}
