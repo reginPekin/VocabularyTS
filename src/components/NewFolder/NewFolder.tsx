@@ -8,11 +8,15 @@ import { dropInputRefValues } from "../../utils";
 import styles from "./NewFolder.module.css";
 
 interface Props {
-  onAdd: (folderName: string, foreignInput: string, nativeInput: string) => any;
+  onAdd?: (
+    folderName: string,
+    foreignInput: string,
+    nativeInput: string
+  ) => any;
 }
 
-export const NewFolder: FunctionComponent<Props> = ({ onAdd }) => {
-  const [isVisible, setIsVisible] = useState(false);
+export const NewFolder: FunctionComponent<Props> = ({ onAdd = () => null }) => {
+  const [isVisible, setIsVisible] = useState<boolean>(false);
   const changeVisibility = (changedVisibility: boolean) => {
     setIsVisible(changedVisibility);
   };
@@ -29,7 +33,7 @@ export const NewFolder: FunctionComponent<Props> = ({ onAdd }) => {
       >
         <section className={styles.span}>
           {/* <img src={Plus} alt="Plus" width={15} /> */}
-          <span> Add folder </span>
+          <span>Add folder</span>
         </section>
       </Button>
       <Popup
@@ -41,8 +45,7 @@ export const NewFolder: FunctionComponent<Props> = ({ onAdd }) => {
           className={styles.form}
           onSubmit={event => {
             event.preventDefault();
-            if (foreignInputRef && foreignInputRef.current)
-              foreignInputRef.current.focus();
+            if (foreignInputRef?.current) foreignInputRef.current.focus();
           }}
         >
           <span>Name of the folder:</span>
@@ -53,8 +56,7 @@ export const NewFolder: FunctionComponent<Props> = ({ onAdd }) => {
           className={styles.form}
           onSubmit={event => {
             event.preventDefault();
-            if (nativeInputRef && nativeInputRef.current)
-              nativeInputRef.current.focus();
+            if (nativeInputRef?.current) nativeInputRef.current.focus();
           }}
         >
           <span>Foreign language:</span>

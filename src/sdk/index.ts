@@ -1,9 +1,9 @@
 import axios from "axios";
-import { SortMethod } from "./types";
+import { SortMethod, Folder } from "./types";
 
 const API_ENDPOINT = "http://localhost:4000/vocabulary";
 
-export const getFolderNames = async () => {
+export const getFolderNames = async (): Promise<Folder[]> => {
   return await axios
     .get(`${API_ENDPOINT}/folders/names`)
     .then(response => response.data);
@@ -50,7 +50,7 @@ export const createNewWord = async (newWord: {
   folderId: string;
   foreignWord: string;
   nativeWord: string;
-  speechPart: string;
+  // speechPart: string;
 }) => {
   return await axios.post(
     `${API_ENDPOINT}/folders/` + newWord.folderId + "/words",
@@ -75,7 +75,7 @@ export const deleteWordsPair = async (id: string, wordId: string) => {
 
 export const getWordsArray = async (
   folderId: string,
-  sort: SortMethod,
+  sort: string, // SortMethod
   sortDirecton: number
 ) => {
   return await axios
