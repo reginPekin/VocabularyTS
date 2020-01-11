@@ -1,0 +1,61 @@
+.buttonClassName {
+  width: 5em;
+  font-size: 2em;
+  font-weight: 700;
+  display: flex;
+  justify-content: flex-start;
+  padding: 0;
+}
+
+.inputClassName {
+  border: none;
+  font-size: 2em;
+  font-weight: 700;
+  padding: 0;
+}
+
+.formClassName {
+  width: 10rem;
+  margin: 0;
+  font-weight: 700;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.infoBox {
+  display: flex;
+  padding: 1em;
+  margin-bottom: 0.7em;
+}
+
+.sort {
+  display: flex;
+  align-items: center;
+  /* padding-top: 1em; */
+}
+
+.sortSelect {
+  padding-left: 0.5em;
+  width: 12rem;
+}
+
+.popupInput {
+  width: 100%;
+  font-size: 1em;
+  padding: 0.5em;
+  border: none;
+}
+
+.popupForm {
+  width: 20em;
+}
+
+.searchedWord {
+  width: 100%;
+  padding: 0.5em 1em;
+}
+
+.popup {
+  left: 50%;
+  margin-left: -150px;
+}
