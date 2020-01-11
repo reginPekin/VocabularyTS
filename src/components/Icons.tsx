@@ -38,7 +38,7 @@ export const MenuIcon = () => {
   );
 };
 
-export const RepeatIcon = props => {
+export const RepeatIcon = (props: any) => {
   return (
     <svg
       width={24}

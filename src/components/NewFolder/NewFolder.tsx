@@ -1,7 +1,5 @@
 import React, { useState, useRef, FunctionComponent } from "react";
 
-import Plus from "../../images/blackPlus.png";
-
 import { Button } from "../Button";
 import { Popup } from "../Popup";
 
@@ -30,7 +28,7 @@ export const NewFolder: FunctionComponent<Props> = ({ onAdd }) => {
         buttonClassName={styles.newFolderButton}
       >
         <section className={styles.span}>
-          <img src={Plus} alt="Plus" width={15} />
+          {/* <img src={Plus} alt="Plus" width={15} /> */}
           <span> Add folder </span>
         </section>
       </Button>
