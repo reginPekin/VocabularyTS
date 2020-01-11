@@ -1,0 +1,17 @@
+main {
+  height: 100%;
+}
+
+.table {
+  border-collapse: collapse;
+}
+
+.infoBox {
+  width: 100%;
+}
+
+.vocabularyWindow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
