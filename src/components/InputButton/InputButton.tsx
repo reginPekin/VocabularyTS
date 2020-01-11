@@ -11,8 +11,8 @@ import { Button } from "../Button";
 
 interface Props {
   isVisible: boolean;
-  changeVisibility: (value: boolean) => any;
-  onChange: (event: any) => any;
+  changeVisibility?: (value: boolean) => any;
+  onChange?: (event: any) => any;
   text: string;
   inputClassName?: string;
   buttonClassName?: string;
@@ -21,12 +21,12 @@ interface Props {
 
 export const InputButton: FunctionComponent<Props> = ({
   isVisible,
-  changeVisibility,
-  onChange,
+  changeVisibility = () => null,
+  onChange = () => null,
   text,
-  inputClassName = undefined,
-  buttonClassName = undefined,
-  formClassName = undefined
+  inputClassName,
+  buttonClassName,
+  formClassName
 }) => {
   if (!isVisible) {
     return (
@@ -35,9 +35,7 @@ export const InputButton: FunctionComponent<Props> = ({
         inputClassName={inputClassName}
         value={text}
         changeVisibility={() => changeVisibility(true)}
-        onSubmit={value => {
-          onChange(value);
-        }}
+        onSubmit={value => onChange(value)}
       />
     );
   }
@@ -54,7 +52,7 @@ export const InputButton: FunctionComponent<Props> = ({
 interface InputProps {
   value?: string;
   changeVisibility?: () => any;
-  onSubmit?: (event?: string | undefined) => any;
+  onSubmit?: (value?: string) => any;
   inputClassName?: string;
   formClassName?: string;
 }
@@ -63,8 +61,8 @@ const EditingInput: FunctionComponent<InputProps> = ({
   value = "",
   changeVisibility = () => null,
   onSubmit = () => null,
-  inputClassName = undefined,
-  formClassName = undefined
+  inputClassName,
+  formClassName
 }) => {
   const inputRef = useRef<HTMLInputElement | null>(null);
   useSelect(inputRef);
@@ -74,7 +72,7 @@ const EditingInput: FunctionComponent<InputProps> = ({
     <form
       className={formClassName}
       onSubmit={event => {
-        if (inputRef && inputRef.current) {
+        if (inputRef?.current) {
           onSubmit(inputRef.current.value);
           inputRef.current.value = "";
         }
