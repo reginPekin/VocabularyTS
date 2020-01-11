@@ -11,12 +11,12 @@ import styles from "./Menu.module.css";
 import { State } from "../../redux/reducers";
 import { Folder } from "../../sdk/types";
 
-interface Props {
+interface ReduxProps {
   beam: number;
 }
 
-const MenuContainer: FunctionComponent<Props> = ({ beam }) => {
-  const [folderNames, setFolderNames] = useState(Array());
+const MenuContainer: FunctionComponent<ReduxProps> = ({ beam }) => {
+  const [folderNames, setFolderNames] = useState<Folder[]>([]);
 
   const navigation = useNavigation();
 
@@ -71,7 +71,7 @@ const MenuContainer: FunctionComponent<Props> = ({ beam }) => {
   );
 };
 
-const mapStateProps = (state: State) => ({
+const mapStateProps = (state: State): ReduxProps => ({
   beam: state.hookBeamReducer.beam
 });
 
