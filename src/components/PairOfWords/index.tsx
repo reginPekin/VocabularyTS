@@ -1,0 +1,1 @@
+export { PairOfWords } from "./PairOfWords";
