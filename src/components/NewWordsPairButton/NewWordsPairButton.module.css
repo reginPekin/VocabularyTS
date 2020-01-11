@@ -1,0 +1,29 @@
+.colSpan {
+  border: none;
+}
+
+.newFolderButton {
+  text-align: left;
+  font-size: 1em;
+  padding: 1em 2em 1em 0;
+  width: 100%;
+}
+
+.newFolderButton:hover {
+  background-color: white;
+}
+
+.newFolderButton img {
+  padding-right: 7px;
+}
+
+.section {
+  display: flex;
+  line-height: 120%;
+  font-size: 16px;
+  justify-content: center;
+}
+
+.newFolderButton:hover {
+  text-decoration: underline;
+}
