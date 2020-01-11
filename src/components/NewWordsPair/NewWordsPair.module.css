@@ -1,0 +1,36 @@
+.newWordsPair {
+  margin: 1em;
+  display: flex;
+  padding: 1em;
+  flex-direction: column;
+  width: 400px;
+  background-color: var(--dark-grey);
+  border-radius: 4px;
+}
+
+.words {
+  display: flex;
+  justify-content: space-around;
+}
+
+.additionInfo {
+  display: flex;
+  padding: 1em;
+}
+
+.inputWords {
+  border: none;
+  background-color: var(--light-gray);
+  outline: none;
+  font-size: 1em;
+  color: rgb(43, 43, 43);
+}
+
+::placeholder {
+  color: rgb(117, 117, 117);
+  font-weight: 400;
+}
+
+.select {
+  width: 200px;
+}
