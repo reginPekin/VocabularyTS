@@ -8,7 +8,7 @@ import rootReducer from "../reducers/index";
 const persistConfig = {
   key: "root",
   storage: storage,
-  whitelist: ["sortTypeReducer", "sortDirectionReducer"],
+  whitelist: ["sortTypeReducer"],
   blacklist: ["searchTextChanger", "hookBeamReducer"]
 };
 
