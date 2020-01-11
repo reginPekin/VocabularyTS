@@ -18,7 +18,7 @@ export const FolderBox: FunctionComponent<Props> = ({
   folder,
   onDelete = () => null
 }) => {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState<boolean>(false);
   const changeVisibility = () => setIsVisible(!isVisible);
 
   return (
@@ -33,9 +33,7 @@ export const FolderBox: FunctionComponent<Props> = ({
         </Link>
         <Button
           buttonClassName={styles.button}
-          onClick={() => {
-            setIsVisible(!isVisible);
-          }}
+          onClick={() => setIsVisible(!isVisible)}
         >
           <MenuIcon />
         </Button>

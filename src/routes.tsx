@@ -6,6 +6,6 @@ export const routes = mount({
   "/": route({
     title: "Meee",
     view: <Hello />
-  })
-  // "/voc": lazy(() => import("./components/VocabularyWindow/VocabularyWindow"))
+  }),
+  "/voc": lazy(() => import("./components/VocabularyWindow/VocabularyWindow"))
 });
