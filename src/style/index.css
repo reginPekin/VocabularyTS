@@ -1,0 +1,27 @@
+#root,
+html,
+body,
+element {
+  --dark-grey: rgba(48, 48, 48, 0.123);
+  --light-grey: rgba(0, 0, 0, 0.041);
+  --red: #fc5c64d5;
+  --blue: #45aaf2cb;
+  --yellow: #fed130b0;
+  --orange: #f19f5bc0;
+  --green: #26de82bb;
+  --violet: #9c88ffbd;
+  --dark-blue: #fd79a7be;
+  --dark-violet: #a45eeabd;
+  --grey: #778ca38f;
+}
+
+#root,
+html,
+body {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  font-family: "Work Sans", sans-serif;
+  font-size: 15px;
+}
