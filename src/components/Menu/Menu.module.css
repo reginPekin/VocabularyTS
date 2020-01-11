@@ -1,0 +1,30 @@
+.folderWindow {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  min-width: 200px;
+  height: calc(100vh - 50px);
+  max-width: 240px;
+  background-color: var(--light-grey);
+  position: relative;
+  margin-bottom: 50px;
+}
+
+@media (max-width: 700px) {
+  div.folderWindow {
+    display: none;
+  }
+}
+
+.folders {
+  padding-top: 1em;
+  flex: 1;
+}
+
+.button {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 240px;
+  height: 50px;
+}
