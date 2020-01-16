@@ -19,7 +19,7 @@ interface Props {
   sortDirection: number;
   onClick?: () => any;
   onRename?: (value: string) => any;
-  onSort?: (sortType: string, sortDirection: number) => any;
+  onSort?: (sortType: any, sortDirection: number) => any;
 }
 interface ReduxProps {
   searchText: string;
@@ -145,8 +145,8 @@ export const InfoBoxContainer: FunctionComponent<Props & ReduxProps> = ({
         <Button
           onClick={() => {
             onClick();
-            // if (selectRef && selectRef.current)
-            // onSort(selectRef.current.state.value, sortDirection); TODO find Select state
+            if (selectRef?.current)
+              onSort(selectRef.current.state.value, sortDirection);
           }}
         >
           <RepeatIcon style={{ transform: "rotate(90deg)" }} />

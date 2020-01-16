@@ -9,11 +9,7 @@ import { useOnClickOutside } from "../../utils/hooks";
 interface Props {
   isOpened: boolean;
   changeVisibility?: () => any;
-  onAdd?: (
-    foreignValue: string,
-    nativeValue: string
-  ) => // speechPart: string
-  any;
+  onAdd?: (foreignValue: string, nativeValue: string, speechPart: any) => any;
 }
 
 export const NewWordsPair: FunctionComponent<Props> = ({
@@ -24,7 +20,7 @@ export const NewWordsPair: FunctionComponent<Props> = ({
   const foreignInputRef = useRef<HTMLInputElement | null>(null);
   const nativeInputRef = useRef<HTMLInputElement | null>(null);
   const speechPartRef = useRef<Select | null>(null);
-  // const datalistRef = useRef(null);
+  const datalistRef = useRef<HTMLInputElement | null>(null);
   const formRef = useRef(null);
 
   // console.log(datalistRef);
@@ -67,8 +63,10 @@ export const NewWordsPair: FunctionComponent<Props> = ({
         <form
           onSubmit={event => {
             event.preventDefault();
-            if (speechPartRef?.current) speechPartRef.current.focus();
-            // datalistRef.current.focus();
+            if (speechPartRef?.current && datalistRef?.current) {
+              speechPartRef.current.focus();
+              datalistRef.current.focus();
+            }
           }}
         >
           <input
@@ -92,8 +90,8 @@ export const NewWordsPair: FunctionComponent<Props> = ({
             }
             onAdd(
               foreignInputRef.current.value,
-              nativeInputRef.current.value
-              // speechPartRef.current.state.value
+              nativeInputRef.current.value,
+              speechPartRef.current.state.value
             );
             dropInputRefValues(foreignInputRef, nativeInputRef, speechPartRef);
             foreignInputRef.current.focus();
