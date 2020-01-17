@@ -1,4 +1,4 @@
-import React, { useState, useRef, FunctionComponent } from "react";
+import React, { useState, FunctionComponent } from "react";
 import Select from "react-select";
 import { connect, useDispatch } from "react-redux";
 
@@ -15,30 +15,29 @@ import { State } from "../../redux/reducers";
 
 interface Props {
   name: string;
-  sortMethod: string;
-  sortDirection: number;
+  sortMethod?: string;
+  sortDirection?: number;
   onClick?: () => any;
   onRename?: (value: string) => any;
   onSort?: (sortType: any, sortDirection: number) => any;
 }
 interface ReduxProps {
-  searchText: string;
+  searchText?: string;
 }
 
 export const InfoBoxContainer: FunctionComponent<Props & ReduxProps> = ({
   name,
-  sortMethod,
-  sortDirection,
-  searchText,
+  sortMethod = "date",
+  sortDirection = 1,
+  searchText = "",
   onSort = () => null,
-  onClick = () => null,
+  onClick = () => 1,
   onRename = () => null
 }) => {
   const dispatch = useDispatch();
 
   const [visibility, setVisibility] = useState<boolean>(true);
   const [popupVisibility, setPopupVisibility] = useState<boolean>(false);
-  const selectRef = useRef<Select | null>(null);
 
   const changeVisibility = (visibility: boolean) => setVisibility(visibility);
   const changePopupVisibility = () => setPopupVisibility(!popupVisibility);
@@ -101,7 +100,6 @@ export const InfoBoxContainer: FunctionComponent<Props & ReduxProps> = ({
             className={styles.popupInput}
             onChange={event => {
               dispatch(setSearchText(event.target.value));
-              console.log(searchText);
             }}
             autoFocus
             value={searchText}
@@ -134,7 +132,6 @@ export const InfoBoxContainer: FunctionComponent<Props & ReduxProps> = ({
       <label className={styles.sort}>
         Sort by:
         <Select
-          ref={selectRef}
           className={styles.sortSelect}
           options={options}
           onChange={(event: any) => {
@@ -145,8 +142,7 @@ export const InfoBoxContainer: FunctionComponent<Props & ReduxProps> = ({
         <Button
           onClick={() => {
             onClick();
-            if (selectRef?.current)
-              onSort(selectRef.current.state.value, sortDirection);
+            onSort(sortMethod, sortDirection);
           }}
         >
           <RepeatIcon style={{ transform: "rotate(90deg)" }} />
