@@ -14,12 +14,12 @@ import styles from "./style/index.module.css";
 import { Menu } from "./components/Menu";
 
 interface Props {
-  sortType: string;
+  sortType?: string;
   sortDirection: number;
 }
 
 const AppContainer: FunctionComponent<Props> = ({
-  sortType,
+  sortType = "date",
   sortDirection
 }) => {
   return (
@@ -36,10 +36,12 @@ const AppContainer: FunctionComponent<Props> = ({
   );
 };
 
-const mapStateProps = (state: State) => ({
-  sortType: state.sortTypeReducer.sortType,
-  sortDirection: state.sortTypeReducer.sortDirection
-});
+const mapStateProps = (state: State) => {
+  return {
+    sortType: state.sortTypeReducer.sortType,
+    sortDirection: state.sortTypeReducer.sortDirection
+  };
+};
 
 const App = connect(mapStateProps)(AppContainer);
 

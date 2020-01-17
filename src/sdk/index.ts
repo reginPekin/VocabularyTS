@@ -1,5 +1,5 @@
 import axios from "axios";
-import { SortMethod, Folder } from "./types";
+import { Folder } from "./types";
 
 const API_ENDPOINT = "http://localhost:4000/vocabulary";
 

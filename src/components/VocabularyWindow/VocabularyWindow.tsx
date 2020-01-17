@@ -18,12 +18,12 @@ import {
 } from "../../utils/smallActions";
 
 import * as sdk from "../../sdk";
-import { Folder, SortMethod } from "../../sdk/types";
+import { Folder } from "../../sdk/types";
 
 interface Props {
   folderRequest: Folder;
   sortDirection: number;
-  sortType: SortMethod;
+  sortType: string;
 }
 
 // renders the main part of the app
@@ -46,6 +46,7 @@ const VocabularyWindow: FunctionComponent<Props> = ({
 
     document.addEventListener("keydown", listenKeyboard);
     return () => document.removeEventListener("keydown", listenKeyboard);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeWordsPairId]);
 
   // finds the id of a next pair
@@ -219,6 +220,7 @@ const VocabularyWindow: FunctionComponent<Props> = ({
 export default mount({
   "/:id": route({
     async getView(request, context: any) {
+      // console.log(request, context);
       try {
         const folder = await sdk.getWordsArray(
           request.params.id,
