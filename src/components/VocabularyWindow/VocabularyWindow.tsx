@@ -18,7 +18,7 @@ import {
 } from "../../utils/smallActions";
 
 import * as sdk from "../../sdk";
-import { Folder } from "../../sdk/types";
+import { Folder, SpeechPart } from "../../sdk/types";
 
 interface Props {
   folderRequest: Folder;
@@ -197,17 +197,18 @@ const VocabularyWindow: FunctionComponent<Props> = ({
         changeVisibility={() => setIsOpened(!isOpened)}
         onAdd={(
           foreignWord: string,
-          nativeWord: string
-          //  speechPart: string
+          nativeWord: string,
+          speechPartObject: SpeechPart
         ) => {
+          let speechPart: string = speechPartObject.value;
           sdk
             .createNewWord({
               folderId: folder.id,
               foreignWord,
-              nativeWord
-              // speechPart
+              nativeWord,
+              speechPart
             })
-            .then(data => {
+            .then((data: any) => {
               const newWord = data.data;
               setFolder({ ...folder, words: [...folder.words, newWord] });
             });
