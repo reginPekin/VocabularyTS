@@ -15,4 +15,9 @@ export interface Word {
   speechPart: string;
 }
 
+export interface SpeechPart {
+  value: string;
+  label: string;
+}
+
 export type SortMethod = "date" | "foreign" | "native" | "speech";
