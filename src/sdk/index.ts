@@ -50,7 +50,7 @@ export const createNewWord = async (newWord: {
   folderId: string;
   foreignWord: string;
   nativeWord: string;
-  // speechPart: string;
+  speechPart: string;
 }) => {
   return await axios.post(
     `${API_ENDPOINT}/folders/` + newWord.folderId + "/words",
