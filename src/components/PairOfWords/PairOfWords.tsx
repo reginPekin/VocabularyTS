@@ -3,10 +3,9 @@ import React, { useRef, FunctionComponent } from "react";
 import styles from "./PairOfWords.module.css";
 import cx from "classnames";
 
-import { activeStyle, clickedStyle } from "../../utils/index";
+import { activeStyle } from "../../utils/index";
 import { useOnClickOutside } from "../../utils/hooks";
 import { Word } from "../../sdk/types";
-import { NonceProvider } from "react-select";
 
 interface Props {
   activeWordsPairId: string;
