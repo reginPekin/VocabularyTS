@@ -127,7 +127,10 @@ const VocabularyWindow: FunctionComponent<Props> = ({
             <PairOfWords
               // folderId={folder.id}
               wordPair={wordPair}
-              onClick={() => setActiveWordPairId(wordPair.wordId)}
+              onClick={() => {
+                setActiveWordPairId(wordPair.wordId);
+                setIsDoubleClicked(false);
+              }}
               // setActiveWordPairId={setActiveWordPairId}
               emptyState={() => setActiveWordPairId("")}
               activeWordsPairId={activeWordsPairId}
