@@ -54,3 +54,18 @@ td {
   background-color: var(--light-grey);
   padding: 0;
 }
+
+.additionOpenedContext {
+  font-size: 1em;
+  height: 50px;
+  transition: height 0.2s ease-out 0s, color 0.3s linear 0s,
+    font-size 0s linear 0.3s;
+}
+
+.additionClosedContext {
+  font-size: 0;
+  color: rgba(0, 0, 0, 0);
+  height: 0;
+  transition: height 0.3s ease-out 0.3s, color 0.3s linear 0.2s,
+    font-size 0s linear 0.3s;
+}

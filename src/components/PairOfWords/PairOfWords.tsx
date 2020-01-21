@@ -71,22 +71,10 @@ export const PairOfWords: FunctionComponent<Props> = ({
         </td>
       </tr>
       <tr
-        style={
-          isContextOpen
-            ? {
-                fontSize: "1em",
-                height: "50px",
-                transition:
-                  "height 0.2s ease-out 0s, color 0.3s linear 0s, font-size 0s linear 0.3s"
-              }
-            : {
-                fontSize: "0",
-                color: "rgba(0, 0, 0, 0)",
-                height: "0",
-                transition:
-                  "height 0.3s ease-out 0.3s, color 0.3s linear 0.2s, font-size 0s linear 0.3s"
-              }
-        }
+        className={cx(
+          { [styles.additionOpenedContext]: isContextOpen },
+          { [styles.additionClosedContext]: !isContextOpen }
+        )}
       >
         <td colSpan={2} className={styles.additionTd}>
           <span>The part of speech: {wordPair.speechPart}</span>
