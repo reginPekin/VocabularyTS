@@ -1,25 +1,54 @@
 td {
-  /* border-bottom: 1px solid var(--dark-grey); */
   width: 200px;
-  padding: 0.5em 1em;
+  padding: 0;
 }
 
 .trOfWords {
   margin: 1em;
 }
 
-td:first-child {
+.rightDiv {
+  border-top-right-radius: 13px;
+  border-bottom-right-radius: 0;
+  background-color: var(--light-grey);
+}
+
+.leftDiv {
+  border-top-left-radius: 13px;
+  border-bottom-left-radius: 0;
+  background-color: var(--light-grey);
+}
+
+.rightBackDiv {
+  border-top-right-radius: 13px;
+  border-bottom-right-radius: 13px;
+  transition: background-color 0.2s ease-out 0.57s,
+    border-bottom-right-radius 0.1s linear 0.57s, border-radius 0s linear 0.6s;
+}
+.leftBackDiv {
+  border-top-left-radius: 13px;
+  border-bottom-left-radius: 13px;
+  transition: background-color 0.2s ease-out 0.57s,
+    border-bottom-left-radius 0.1s linear 0.57s, border-radius 0s linear 0.6s;
+}
+
+.innerDiv {
+  padding: 0.5em 1em;
+}
+
+.leftChild {
   border-top-left-radius: 13px;
   border-bottom-left-radius: 13px;
 }
 
-td:last-child {
+.rightChild {
   border-top-right-radius: 13px;
   border-bottom-right-radius: 13px;
-  /* transition: border-bottom-right-radius 0s linear 0.3s; */
 }
 
-td.additionTd {
+.additionTd {
+  border-bottom-right-radius: 13px;
+  border-bottom-left-radius: 13px;
   border-top-right-radius: 0;
   border-top-left-radius: 0;
   background-color: var(--light-grey);

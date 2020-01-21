@@ -1,9 +1,12 @@
 import React, { useRef, FunctionComponent } from "react";
 
 import styles from "./PairOfWords.module.css";
+import cx from "classnames";
+
 import { activeStyle, clickedStyle } from "../../utils/index";
 import { useOnClickOutside } from "../../utils/hooks";
 import { Word } from "../../sdk/types";
+import { NonceProvider } from "react-select";
 
 interface Props {
   activeWordsPairId: string;
@@ -30,6 +33,8 @@ export const PairOfWords: FunctionComponent<Props> = ({
     emptyState();
   });
 
+  if (activeWordsPairId === wordPair.wordId) console.log(isContextOpen);
+
   return (
     <>
       <tr
@@ -39,25 +44,31 @@ export const PairOfWords: FunctionComponent<Props> = ({
         onClick={event => !isContextOpen && onClick(event)}
         onDoubleClick={event => onDoubleClick(event)}
       >
-        <td
-          style={clickedStyle(
-            activeWordsPairId,
-            wordPair.wordId,
-            "tdFirst",
-            isContextOpen
-          )}
-        >
-          {wordPair.foreignWord}
+        <td className={styles.leftChild}>
+          <div
+            className={cx(
+              styles.innerDiv,
+              {
+                [styles.leftDiv]: isContextOpen
+              },
+              { [styles.leftBackDiv]: !isContextOpen }
+            )}
+          >
+            {wordPair.foreignWord}
+          </div>
         </td>
-        <td
-          style={clickedStyle(
-            activeWordsPairId,
-            wordPair.wordId,
-            "tdSecond",
-            isContextOpen
-          )}
-        >
-          {wordPair.nativeWord}
+        <td className={styles.rightChild}>
+          <div
+            className={cx(
+              styles.innerDiv,
+              {
+                [styles.rightDiv]: isContextOpen
+              },
+              { [styles.rightBackDiv]: !isContextOpen }
+            )}
+          >
+            {wordPair.nativeWord}
+          </div>
         </td>
       </tr>
       <tr
@@ -67,14 +78,14 @@ export const PairOfWords: FunctionComponent<Props> = ({
                 fontSize: "1em",
                 height: "50px",
                 transition:
-                  "height 0.2s ease-out 0s, color 0.1s linear 0s, font-size 0s linear 0.1s"
+                  "height 0.2s ease-out 0s, color 0.3s linear 0s, font-size 0s linear 0.3s"
               }
             : {
                 fontSize: "0",
                 color: "rgba(0, 0, 0, 0)",
                 height: "0",
                 transition:
-                  "height 0.2s ease-out 0s, color 0.1s linear 0s, font-size 0s linear 0.1s"
+                  "height 0.3s ease-out 0.3s, color 0.3s linear 0.2s, font-size 0s linear 0.3s"
               }
         }
       >

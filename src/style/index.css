@@ -3,7 +3,7 @@ html,
 body,
 element {
   --dark-grey: rgba(48, 48, 48, 0.123);
-  --light-grey: rgba(0, 0, 0, 0.041);
+  --light-grey: rgb(241, 241, 241);
   --red: #fc5c64d5;
   --blue: #45aaf2cb;
   --yellow: #fed130b0;
