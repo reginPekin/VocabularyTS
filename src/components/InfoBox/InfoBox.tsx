@@ -12,11 +12,14 @@ import { RepeatIcon, SearchIcon } from "../Icons";
 
 import { setSearchText } from "../../utils/smallActions";
 import { State } from "../../redux/reducers";
+import { Word } from "../../sdk/types";
 
 interface Props {
+  words: Word[];
   name: string;
   sortMethod?: string;
   sortDirection?: number;
+  isSearched?: (wordId: string) => any;
   onClick?: () => any;
   onRename?: (value: string) => any;
   onSort?: (sortType: any, sortDirection: number) => any;
@@ -26,10 +29,12 @@ interface ReduxProps {
 }
 
 export const InfoBoxContainer: FunctionComponent<Props & ReduxProps> = ({
+  words,
   name,
   sortMethod = "date",
   sortDirection = 1,
   searchText = "",
+  isSearched = () => null,
   onSort = () => null,
   onClick = () => 1,
   onRename = () => null
@@ -61,20 +66,6 @@ export const InfoBoxContainer: FunctionComponent<Props & ReduxProps> = ({
       console.log("none");
   }
 
-  const Voc = [
-    "one",
-    "two",
-    "three",
-    "sdfsd",
-    "cxmv",
-    "dsfl",
-    "lcm",
-    "dvkci",
-    "tiro",
-    "pogpf",
-    "gbklc"
-  ]; // как будет готов поиск, удаляй!
-
   const options = [
     { value: "date", label: "Date" },
     { value: "foreign", label: "Foreign words" },
@@ -105,14 +96,27 @@ export const InfoBoxContainer: FunctionComponent<Props & ReduxProps> = ({
             value={searchText}
           />
           {/* eslint-disable-next-line array-callback-return */}
-          {Voc.map((word, key) => {
+          {words.map((word, key) => {
             if (
               searchText !== "" &&
-              word.toLowerCase().indexOf(searchText.toLowerCase()) !== -1
+              (word.foreignWord
+                .toLowerCase()
+                .indexOf(searchText.toLowerCase()) !== -1 ||
+                word.nativeWord
+                  .toLowerCase()
+                  .indexOf(searchText.toLowerCase()) !== -1)
             ) {
               return (
-                <div key={key} className={styles.searchedWord}>
-                  {word}
+                <div
+                  key={key}
+                  className={styles.searchedWord}
+                  onClick={() => {
+                    isSearched(word.wordId);
+                    dispatch(setSearchText(""));
+                    changePopupVisibility();
+                  }}
+                >
+                  {word.foreignWord} – {word.nativeWord}
                 </div>
               );
             }
