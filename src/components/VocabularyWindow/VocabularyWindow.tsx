@@ -38,57 +38,66 @@ const VocabularyWindow: FunctionComponent<Props> = ({
   const [isOpened, setIsOpened] = useState<boolean>(false);
   const [activeWordsPairId, setActiveWordPairId] = useState<string>("");
   const [isDoubleClicked, setIsDoubleClicked] = useState<boolean>(false);
+  const [assistingValue, setAssistingValue] = useState<number>(0);
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    // setIsDoubleClicked(!isDoubleClicked);
+  }, [assistingValue]);
 
   useEffect(() => setFolder(folderRequest), [folderRequest]);
-
-  useEffect(() => {
-    setIsDoubleClicked(false);
-
-    document.addEventListener("keydown", listenKeyboard);
-    return () => document.removeEventListener("keydown", listenKeyboard);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeWordsPairId]);
-
-  // finds the id of a next pair
-  const findNextPairId = (activeIndex: number, direction: string) => {
-    const nextIndex = direction === "up" ? activeIndex - 1 : activeIndex + 1;
-    const frontierIndex = direction === "up" ? folder.words.length - 1 : 0;
-
-    return folder.words[nextIndex]
-      ? folder.words[nextIndex].wordId
-      : folder.words[frontierIndex].wordId;
-  };
-
+  console.log(folder.words);
   // executes commands on keys pressed
   const listenKeyboard = (event: KeyboardEvent) => {
+    // finds the id of a next pair
+    const findNextPairId = (activeIndex: number, direction: string) => {
+      const nextIndex = direction === "up" ? activeIndex - 1 : activeIndex + 1;
+      const frontierIndex = direction === "up" ? folder.words.length - 1 : 0;
+
+      return folder.words[nextIndex]
+        ? folder.words[nextIndex].wordId
+        : folder.words[frontierIndex].wordId;
+    };
+
     const activeIndex = folder.words.findIndex(
       element => element.wordId === activeWordsPairId
     );
 
-    if (event.key === "ArrowUp") {
+    // ArrowUp
+    if (event.keyCode === 38) {
       const nextId = findNextPairId(activeIndex, "up");
       setActiveWordPairId(nextId);
-      setIsDoubleClicked(false);
       return;
     }
-    if (event.key === "ArrowDown") {
+    // ArrowDown
+    if (event.keyCode === 40) {
       const nextId = findNextPairId(activeIndex, "down");
       setActiveWordPairId(nextId);
-      setIsDoubleClicked(false);
       return;
     }
-    if (event.key === "Space") {
+    // Space
+    if (event.keyCode === 32) {
       if (!activeWordsPairId) {
         return;
       }
+      setAssistingValue(assistingValue + 1);
       setIsDoubleClicked(!isDoubleClicked);
+
       return;
     }
   };
 
+  useEffect(() => setIsDoubleClicked(false), [activeWordsPairId]);
+  useEffect(() => {
+    document.addEventListener("keydown", listenKeyboard);
+    return () => document.removeEventListener("keydown", listenKeyboard);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeWordsPairId, isDoubleClicked]);
+
   return (
     <main className={styles.vocabularyWindow}>
       <InfoBox
+        words={folder.words}
         sortDirection={sortDirection}
         sortMethod={sortType}
         // className={styles.InfoBox}
@@ -99,6 +108,7 @@ const VocabularyWindow: FunctionComponent<Props> = ({
             dispatch(setHookBeam());
           });
         }}
+        isSearched={wordId => setActiveWordPairId(wordId)}
         onSort={(sortType, sortDirection) => {
           sdk.getWordsArray(folder.id, sortType, sortDirection).then(data => {
             setFolder({ ...folder, words: data.words });
@@ -132,8 +142,8 @@ const VocabularyWindow: FunctionComponent<Props> = ({
                 setIsDoubleClicked(false);
               }}
               // setActiveWordPairId={setActiveWordPairId}
-              emptyState={() => setActiveWordPairId("")}
-              activeWordsPairId={activeWordsPairId}
+              emptyState={() => setActiveWordPairId("")} // onClickOutside @DIWAN
+              activeWordsPairId={activeWordsPairId} // isActive @DIWAN
               key={wordPair.wordId}
               isContextOpen={
                 wordPair.wordId === activeWordsPairId && isDoubleClicked
@@ -224,7 +234,6 @@ const VocabularyWindow: FunctionComponent<Props> = ({
 export default mount({
   "/:id": route({
     async getView(request, context: any) {
-      // console.log(request, context);
       try {
         const folder = await sdk.getWordsArray(
           request.params.id,
