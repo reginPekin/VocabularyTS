@@ -13,7 +13,7 @@ interface Props {
   isVisible: boolean;
   changeVisibility?: (value: boolean) => any;
   onChange?: (event: any) => any;
-  text: string;
+  text?: string;
   inputClassName?: string;
   buttonClassName?: string;
   formClassName?: string;
@@ -23,7 +23,7 @@ export const InputButton: FunctionComponent<Props> = ({
   isVisible,
   changeVisibility = () => null,
   onChange = () => null,
-  text,
+  text = "",
   inputClassName,
   buttonClassName,
   formClassName
