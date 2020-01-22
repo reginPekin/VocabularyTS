@@ -8,28 +8,28 @@ td {
 }
 
 .rightDiv {
-  border-top-right-radius: 13px;
+  border-top-right-radius: 5px;
   border-bottom-right-radius: 0;
   background-color: var(--light-grey);
 }
 
 .leftDiv {
-  border-top-left-radius: 13px;
+  border-top-left-radius: 5px;
   border-bottom-left-radius: 0;
   background-color: var(--light-grey);
 }
 
 .rightBackDiv {
-  border-top-right-radius: 13px;
-  border-bottom-right-radius: 13px;
-  transition: background-color 0.2s ease-out 0.57s,
-    border-bottom-right-radius 0.1s linear 0.57s, border-radius 0s linear 0.6s;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  /* transition: background-color 0.2s ease-out 0.57s,
+    border-bottom-right-radius 0.1s linear 0.57s, border-radius 0s linear 0.6s; */
 }
 .leftBackDiv {
-  border-top-left-radius: 13px;
-  border-bottom-left-radius: 13px;
-  transition: background-color 0.2s ease-out 0.57s,
-    border-bottom-left-radius 0.1s linear 0.57s, border-radius 0s linear 0.6s;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  /* transition: background-color 0.2s ease-out 0.57s,
+    border-bottom-left-radius 0.1s linear 0.57s, border-radius 0s linear 0.6s; */
 }
 
 .innerDiv {
@@ -37,35 +37,45 @@ td {
 }
 
 .leftChild {
-  border-top-left-radius: 13px;
-  border-bottom-left-radius: 13px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
 }
 
 .rightChild {
-  border-top-right-radius: 13px;
-  border-bottom-right-radius: 13px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
 .additionTd {
-  border-bottom-right-radius: 13px;
-  border-bottom-left-radius: 13px;
-  border-top-right-radius: 0;
-  border-top-left-radius: 0;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  user-select: none;
   background-color: var(--light-grey);
   padding: 0;
+  transition: background-color 0.2s ease-out 1s;
 }
 
 .additionOpenedContext {
   font-size: 1em;
-  height: 50px;
-  transition: height 0.2s ease-out 0s, color 0.3s linear 0s,
-    font-size 0s linear 0.3s;
+  height: 100px;
+  transition: height 0.2s ease-out 1s;
 }
 
-.additionClosedContext {
-  font-size: 0;
-  color: rgba(0, 0, 0, 0);
-  height: 0;
-  transition: height 0.3s ease-out 0.3s, color 0.3s linear 0.2s,
-    font-size 0s linear 0.3s;
+.tdClosedAddition {
+  display: none;
+  /* transition: display 1s linear 1s, background-color 1s linear 1s; */
 }
+
+.tdOpenedAddition {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5em;
+  /* transition: display 1s linear 1s, background-color 1s linear 1s; */
+}
+
+/* невидимое выделение
+span::selection {
+  background: transparent;
+} */
