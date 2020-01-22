@@ -4,15 +4,16 @@ export interface Folder {
   id: string;
   foreignLanguage: string;
   nativeLanguage: string;
-  sortMethod: SortMethod;
+  // sortMethod: SortMethod;
 }
 
 export interface Word {
   foreignWord: string;
   nativeWord: string;
   wordId: string;
-  date: number;
-  speechPart: string;
+  date?: number;
+  speechPart?: string;
+  tags?: string[];
 }
 
 export interface SpeechPart {
@@ -20,4 +21,4 @@ export interface SpeechPart {
   label: string;
 }
 
-export type SortMethod = "date" | "foreign" | "native" | "speech";
+// export type SortMethod = "date" | "foreign" | "native" | "speech";
