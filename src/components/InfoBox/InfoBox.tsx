@@ -104,7 +104,15 @@ export const InfoBoxContainer: FunctionComponent<Props & ReduxProps> = ({
                 .indexOf(searchText.toLowerCase()) !== -1 ||
                 word.nativeWord
                   .toLowerCase()
-                  .indexOf(searchText.toLowerCase()) !== -1)
+                  .indexOf(searchText.toLowerCase()) !== -1 ||
+                (searchText[0] === "#" &&
+                  searchText.length > 1 &&
+                  word.tags.some(
+                    tag =>
+                      tag
+                        .toLowerCase()
+                        .indexOf(searchText.slice(1).toLowerCase()) !== -1
+                  )))
             ) {
               return (
                 <div
