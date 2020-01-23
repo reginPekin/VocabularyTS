@@ -29,9 +29,6 @@ export const PairOfWords: FunctionComponent<Props> = ({
 
   const tableRef = useRef<HTMLTableRowElement | null>(null);
 
-  if (activeWordsPairId === wordPair.wordId && wordPair.tags)
-    console.log(wordPair.tags);
-
   useOnClickOutside(tableRef, () => {
     if (activeWordsPairId !== wordPair.wordId) return;
 
@@ -88,6 +85,12 @@ export const PairOfWords: FunctionComponent<Props> = ({
               {wordPair.foreignWord} – {wordPair.nativeWord}
             </span>
             <span>The part of speech: {wordPair.speechPart}</span>
+            {wordPair.tags &&
+              wordPair.tags.map((tag, key) => (
+                <span className={styles.tag} key={key}>
+                  {tag}
+                </span>
+              ))}
             <InputButton
               text="add tags"
               isVisible={tagVisibility}
