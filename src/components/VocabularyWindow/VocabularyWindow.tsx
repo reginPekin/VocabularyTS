@@ -46,7 +46,6 @@ const VocabularyWindow: FunctionComponent<Props> = ({
   }, [assistingValue]);
 
   useEffect(() => setFolder(folderRequest), [folderRequest]);
-  console.log(folder.words);
   // executes commands on keys pressed
   const listenKeyboard = (event: KeyboardEvent) => {
     // finds the id of a next pair
